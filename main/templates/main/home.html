@@ -1,0 +1,58 @@
+{% extends 'main/base.html' %}
+{%  load static %}
+
+{% block title %}
+Fault Reporting Center
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+    <div class="card text-center mt-3">
+        <div class="card-header">
+            <h3 class="card-title">NORTHERN REGION</h3>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Faults Reporting</h5>
+            <p class="card-text">Please refer to this page to report all the faults associated with construction
+                industry<strong>mainly public construction properties</strong> and electrity and waterboard
+            related faults</p>
+            <a href="{% url 'fault' %}" class="btn btn-outline-info">Northern Region</a>
+        </div>
+    </div>
+    <div class="card text-center mt-3">
+        <div class="card-header">
+            <h3 class="card-title">CENTRAL REGION</h3>
+        </div>
+        <div class="card-body text-center">
+            <div class="card-header">
+                <h5 class="card-title">Reporting All Central Region Faults</h5>
+            </div>
+            <p>Please refer to this page to report all the faults associated with construction industry
+                <strong>mainly public construction properties</strong> and electricity and waterboard
+                related faults</p>
+            <a href="{% url 'fault' %}" class="btn btn-outline-info">Central Region</a>
+        </div>
+    </div>
+    <div class="card text-center mt-3">
+        <div class="card-header">
+            <h3 class="card-title">SOUTHERN REGION</h3>
+        </div>
+        <div class="card-body text-center">
+            <div class="card-header">
+                <h5 class="card-title">
+                    Reporting All Southern Region Fauts
+                </h5>
+            </div>
+            <p>Please refer to this page to report all the faults associated with construction industry
+                <strong>mainly public construction properties</strong> and electrity and waterboard
+            related faults</p>
+            <a class="btn btn-outline-info" href="{% url 'fault' %}">Southern Region</a>
+        </div>
+    </div>
+    <div class="card-footer">
+        <a href="{% url 'login' %}" class="btn btn-primary btn-block mt-2">Go Back</a>
+    </div>
+</div>
+
+{% endblock %}

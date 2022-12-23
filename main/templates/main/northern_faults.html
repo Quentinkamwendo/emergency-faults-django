@@ -1,0 +1,43 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Fault Reporting Center
+{% endblock %}
+
+{% block content %}
+<div class="card text-center mt-3">
+    <div class="card-header">
+        <ul class="nav nav-pills card-header-pills">
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'escom-north' %}">ESCOM</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'waterboard-north' %}">WATER BOARD</a>
+            </li>
+
+        </ul>
+
+
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Faults Reporting</h5>
+        <p class="card-text">Report your faults here for both escom and water board</p>
+        <a href="" class="btn btn-primary">Go Back</a>
+    </div>
+</div>
+<div class="card text-center mt-3">
+    <div class="card-header">
+        <h4 class="card-title">More Faults</h4>
+    </div>
+    <div class="card-body text-center">
+        <div class="card-header">
+            <h4 class="card-title">
+                Reporting All Construction Faults
+            </h4>
+        </div>
+        <p>Please refer to this page to report all the faults associated with construction industry
+            <strong>mainly public construction properties</strong></p>
+        <a class="btn btn-info btn-block" href="{% url 'construction-north' %}">Construction Faults</a>
+    </div>
+</div>
+{% endblock %}

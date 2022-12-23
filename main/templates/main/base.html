@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <title>
+        {% block title %}
+            Title
+        {% endblock %}
+    </title>
+
+
+</head>
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif%}
+    {% include 'main/includes/navbar.html' %}
+    {% block pageheader %}
+
+    {% endblock %}
+    <div class="container">
+        {% block content %}
+            <h1>hello</h1>
+            <button class="btn btn-outline btn-danger">ENTER</button>
+        {% endblock %}
+
+    </div>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+
+
+</body>
+</html>

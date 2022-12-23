@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+{% block title %}
+    Items Page
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+         {% include 'main/includes/items_modals.html' %}
+
+            <tr>
+                <th scope="row">{{ item.pk }}</th>
+                <td>{{ item.name }}</td>
+                <td>{{ item.price }}$</td>
+                <td>
+                    <button type="button" class="btn btn-outline btn-primary"
+                            data-bs-toggle="modal" data-bs-target="#moreInfoModal{{ item.pk }}">
+                        More Info</button>
+                    <button type="button" class="btn btn-outline btn-success"
+                            data-bs-toggle="modal" data-bs-target="#purchaseConfirmModal{{ item.pk }}">
+                        Purchase This Item</button>
+
+                </td>
+
+            </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+
+{% endblock %}
