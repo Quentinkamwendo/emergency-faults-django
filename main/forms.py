@@ -7,6 +7,7 @@ class ReportForm(ModelForm):
     class Meta:
         model = Report
         fields = '__all__'
+
         widgets = {
-            'phone': PhoneNumberPrefixWidget(initial='US'),
-        }
+             'phone': PhoneNumberPrefixWidget(initial='MW'),
+         }

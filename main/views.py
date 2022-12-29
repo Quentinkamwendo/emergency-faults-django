@@ -17,11 +17,11 @@ def centralfaultpage(request):
 
 
 def northfaultpage(request):
-    return render(request, 'main/north_faults.html')
+    return render(request, 'main/northern_faults.html')
 
 
 def southfaultpage(request):
-    return render(request, 'main/south_faults.html')
+    return render(request, 'main/southern_faults.html')
 
 
 def registerpage(request):
@@ -76,41 +76,177 @@ def escomcentralpage(request):
     return render(request, 'main/escom/escom_central.html', context)
 
 
-def deletepage(request):
-    reports = Report.objects.all()
+def deletecentralescompage(request, pk):
+    reports = Report.objects.get(id=pk)
     if request.method == 'POST':
         reports.delete()
         return redirect('escom-central')
-    return render(request, 'main/delete.html')
+    return render(request, 'main/delete/delete_escom_central.html', {'reports': reports})
 
 
 def escomnorthpage(request):
-    return render(request, 'main/escom/escom_north.html')
+    reports = Report.objects.all()
+    form = ReportForm()
+    if request.method == 'POST':
+        form = ReportForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('escom-north')
+    report_count = reports.count()
+    context = {'reports': reports, 'form': form, 'report_count': report_count}
+
+    return render(request, 'main/escom/escom_north.html', context)
+
+
+def deletenorthescompage(request, pk):
+    reports = Report.objects.get(id=pk)
+    if request.method == 'POST':
+        reports.delete()
+        return redirect('escom-north')
+    return render(request, 'main/delete/delete_escom_north.html', {'reports': reports})
 
 
 def escomsouthpage(request):
-    return render(request, 'main/escom/escom_south.html')
+    reports = Report.objects.all()
+    form = ReportForm()
+    if request.method == 'POST':
+        form = ReportForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('escom-south')
+    report_count = reports.count()
+    context = {'reports': reports, 'form': form, 'report_count': report_count}
+    return render(request, 'main/escom/escom_south.html', context)
+
+
+def deletesouthescompage(request, pk):
+    reports = Report.objects.get(id=pk)
+    if request.method == 'POST':
+        reports.delete()
+        return redirect('escom-south')
+    return render(request, 'main/delete/delete_escom_south.html', {'reports': reports})
 
 
 def constructioncentralpage(request):
-    return render(request, 'main/construction/construction_central.html')
+    reports = Report.objects.all()
+    form = ReportForm()
+    if request.method == 'POST':
+        form = ReportForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('construction-central')
+    report_count = reports.count()
+    context = {'reports': reports, 'form': form, 'report_count': report_count}
+    return render(request, 'main/construction/construction_central.html', context)
 
+
+def deletecentralconstructionpage(request, pk):
+    reports = Report.objects.get(id=pk)
+    if request.method == 'POST':
+        reports.delete()
+        return redirect('construction-central')
+    return render(request, 'main/delete/delete_construction_central.html', {'reports': reports})
 
 def constructionnorthpage(request):
-    return render(request, 'main/construction/construction_north.html')
+    reports = Report.objects.all()
+    form = ReportForm()
+    if request.method == 'POST':
+        form = ReportForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('construction-north')
+    report_count = reports.count()
+    context = {'reports': reports, 'form': form, 'report_count': report_count}
+    return render(request, 'main/construction/construction_north.html', context)
+
+
+def deletenorthconstructionpage(request, pk):
+    reports = Report.objects.get(id=pk)
+    if request.method == 'POST':
+        reports.delete()
+        return redirect('construction-north')
+    return render(request, 'main/delete/delete_construction_north.html', {'reports': reports})
 
 
 def constructionsouthpage(request):
-    return render(request, 'main/construction/construction_south.html')
+    reports = Report.objects.all()
+    form = ReportForm()
+    if request.method == 'POST':
+        form = ReportForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('construction-south')
+    report_count = reports.count()
+    context = {'reports': reports, 'form': form, 'report_count': report_count}
+    return render(request, 'main/construction/construction_south.html', context)
+
+
+def deletesouthconstructionpage(request, pk):
+    reports = Report.objects.get(id=pk)
+    if request.method == 'POST':
+        reports.delete()
+        return redirect('construction-south')
+    return render(request, 'main/delete/delete_construction_south.html', {'reports': reports})
 
 
 def waterboardcentralpage(request):
-    return render(request, 'main/waterboard/waterboard_central.html')
+    reports = Report.objects.all()
+    form = ReportForm()
+    if request.method == 'POST':
+        form = ReportForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('waterboard-central')
+    report_count = reports.count()
+    context = {'reports': reports, 'form': form, 'report_count': report_count}
+    return render(request, 'main/waterboard/waterboard_central.html', context)
+
+
+def deletecentralwaterboardpage(request, pk):
+    reports = Report.objects.get(id=pk)
+    if request.method == 'POST':
+        reports.delete()
+        return redirect('waterboard-central')
+    return render(request, 'main/delete/delete_waterboard_central.html', {'reports': reports})
 
 
 def waterboardnorthpage(request):
-    return render(request, 'main/waterboard/waterboard_north.html')
+    reports = Report.objects.all()
+    form = ReportForm()
+    if request.method == 'POST':
+        form = ReportForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('waterboard-north')
+    report_count = reports.count()
+    context = {'reports': reports, 'form': form, 'report_count': report_count}
+    return render(request, 'main/waterboard/waterboard_north.html', context)
+
+
+def deletenorthwaterboardpage(request, pk):
+    reports = Report.objects.get(id=pk)
+    if request.method == 'POST':
+        reports.delete()
+        return redirect('waterboard-north')
+    return render(request, 'main/delete/delete_waterboard_north.html', {'reports': reports})
 
 
 def waterboardsouthpage(request):
-    return render(request, 'main/waterboard/waterboard_south.html')
+    reports = Report.objects.all()
+    form = ReportForm()
+    if request.method == 'POST':
+        form = ReportForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('waterboard-south')
+    report_count = reports.count()
+    context = {'reports': reports, 'form': form, 'report_count': report_count}
+    return render(request, 'main/waterboard/waterboard_south.html', context)
+
+
+def deletesouthwaterboardpage(request, pk):
+    reports = Report.objects.get(id=pk)
+    if request.method == 'POST':
+        reports.delete()
+        return redirect('waterboard-south')
+    return render(request, 'main/delete/delete_waterboard_south.html', {'reports': reports})

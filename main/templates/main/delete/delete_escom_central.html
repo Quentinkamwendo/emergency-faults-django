@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="card text-center my-4">
+    <div class="card-header">
+        <ul class="nav nav-pills card-header-pills">
+            <li class="nav-item">
+                <a href="{{request.META.HTTP_REFERER}}" class="btn btn-primary">Go Back</a>
+            </li>
+
+        </ul>
+    </div>
+    <div class="card-body">
+        <form method="POST">
+            {% csrf_token %}
+            <p>are you sure you want to delete your report of {{reports.title}}</p>
+        </form>
+    </div>
+    <div class="card-footer">
+        <input type="submit" value="Confirm" class="btn btn-danger">
+    </div>
+</div>
+
+
+
+{% endblock %}

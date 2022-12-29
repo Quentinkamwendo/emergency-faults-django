@@ -3,84 +3,57 @@
 {% block title %}
 Central Region Escom
 {% endblock %}
-
+{% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 {% block content %}
 
 <style>
-    .new-container{
-        display: grid;
-        grid-template-columns: 2fr 2fr 2fr;
-        justify-content: block;
+    .container-fluid{
+        background-color: #c2c2c2;
     }
-    .space{
-        margin-right: 20px;
-        margin-left: 20px;
-    }
-    .all{
-        align: inline;
-    }
-   
+
 </style>
 
-<div class="new-container">
-    <div class="one-third">
-        <h3 class="header mb-3">Faults Application Form</h3>
-        <form method="post" class="form-control mt-3">
-            {% csrf_token %}
-            <label for="title">Problem title</label>
-            <input type="text" list="dropdown-title" class="form-control mb-2">
-            <datalist id="dropdown-title">
-                <select id="title">
-                    <option value="Poles">Poles</option>
-                    <option value="Water">Water</option>
-                </select>
-            </datalist>
-            <input type="text" class="form-control mb-2" placeholder="Enter your current location">
-            <label>Phone Number</label>
-            <input type="tel" name="phonenumber" class="form-control mb-3">
-            <label>Problem Description</label>
-            <textarea class="form-control mb-3"></textarea>
-            <input type="submit" value="Submit Your Faults" class="btn btn-success">
-
-        </form>
-    </div>
-    <div class="mt-3 space">
-        <div class="card-body">
-            <h4 class="card-header">Your submitted details</h4>
-        </div>
-        <form class="form-control">
-             {{form|crispy}}
-            <input type="submit" class="btn btn-success" value="Submit">
-        </form>
-
-    </div>
-
-    <div class="form-control mt-3">
-        {% for report in reports %}
-            <div>
-                <h4 >You submitted the following</h4>
-                <h5>you have {{report_count}} reports</h5>
-                <div class="card text-center">
-                    <h5>{{report.title}}</h5>
-                    <a href=""><h5>{{report.location}}</h5></a>
-                    <p>{{report.description}}</p>
-                    <p>sent {{report.sent|timesince}} ago</p>
-                </div>
-
+<div class="container-fluid my-2 mx-2">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 mt-2 space">
+            <div class="card-body">
+                <h3 class="card-header mb-3">Faults Application Form</h3>
             </div>
-            <a href="{% url 'delete' %}" class="btn btn-outline-danger mt-3">Delete</a>
-            <hr>
-        {% endfor %}
-    </div>
+            <form method="post" class="form-control">
+                {% csrf_token %}
+                {{form|crispy}}
+                <input type="submit" class="btn btn-success" value="Submit">
+            </form>
+        </div>
 
+        <div class="col-md-6 col-sm-6 mt-3">
+            <h4>You submitted the following</h4>
+            <h5>you have {{report_count}} reports</h5>
+            {% for report in reports %}
+
+                <div class="form-control mt-1">
+                    <div class="card text-center">
+                        <h5 class="card-header">{{report.title}}</h5>
+                        <a href=""><h5>{{report.location}}</h5></a>
+                        <p>{{report.description}}</p>
+                        <p>Your cantact is {{report.phone}}</p>
+                        <p>sent {{report.sent|timesince}} ago</p>
+                    </div>
+                    <a href="{% url 'delete-escom-central' report.id %}" class="btn btn-outline-danger mt-3"
+                        >Delete</a>
+
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
 
 
 </div>
 
+<a href="{{request.META.HTTP_REFERER}}" class="btn btn-primary btn-block">Go Back</a>
 
-<br>
 <hr>
-
 
 {% endblock %}

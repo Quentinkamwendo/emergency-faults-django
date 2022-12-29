@@ -1,5 +1,59 @@
 {% extends 'main/base.html' %}
 
 {% block title %}
-Northern Region Waterboard
+Central Region Escom
+{% endblock %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<style>
+    .container-fluid{
+        background-color: #c2c2c2;
+    }
+
+</style>
+
+<div class="container-fluid my-2 mx-2">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 mt-2 space">
+            <div class="card-body">
+                <h3 class="card-header mb-3">Faults Application Form</h3>
+            </div>
+            <form method="post" class="form-control">
+                {% csrf_token %}
+                {{form|crispy}}
+                <input type="submit" class="btn btn-success" value="Submit">
+            </form>
+        </div>
+
+        <div class="col-md-6 col-sm-6 mt-3">
+            <h4>You submitted the following</h4>
+            <h5>you have {{report_count}} reports</h5>
+            {% for report in reports %}
+
+                <div class="form-control mt-1">
+                    <div class="card text-center">
+                        <h5 class="card-header">{{report.title}}</h5>
+                        <a href=""><h5>{{report.location}}</h5></a>
+                        <p>{{report.description}}</p>
+                        <p>Your cantact is {{report.phone}}</p>
+                        <p>sent {{report.sent|timesince}} ago</p>
+                    </div>
+                    <a href="{% url 'delete-waterboard-north' report.id %}" class="btn btn-outline-danger mt-3"
+                        >Delete</a>
+
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
+
+
+</div>
+
+<a href="{{request.META.HTTP_REFERER}}" class="btn btn-primary btn-block">Go Back</a>
+
+<hr>
+
 {% endblock %}
